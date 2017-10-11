@@ -2,9 +2,7 @@
 <form #f="ngForm" (ngSubmit)="submit(f)" >
   <div class="form-group">
     <label for="firstName">FirstName</label>
-    <!--#firstname temp var created for performing operation on only this i/p field and log() also.it is just implemented to show 
-how to perform operation on single element
-      -->
+  
     <input required
      minlength="4"
      pattern="admin"
@@ -15,7 +13,7 @@ how to perform operation on single element
      #firstName="ngModel"
      (change)="log(firstName)"
      class="form-control" >
-
+<!-- "*ngIf="firstName.touched" firstName is template variable -->
    <div
     class="alert alert-danger"
     *ngIf="firstName.touched && firstName.invalid">
@@ -36,7 +34,8 @@ how to perform operation on single element
 
   <div class="form-group">
     <label for="comment">Comment </label>
-    <textarea ngModel name="comment" id="comment"  cols="30" rows="10" class="form-control"></textarea>
+    <!--template var will usefull when we have to set validation on this textarea-->
+    <textarea ngModel name="comment" id="comment" #comment="ngModel" cols="30" rows="10" class="form-control"></textarea>
   </div>
   <!--CheckBox-->
   <div class="checkbox">
