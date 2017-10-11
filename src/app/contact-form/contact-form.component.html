@@ -1,0 +1,65 @@
+<div class="container form1">
+<form #f="ngForm" (ngSubmit)="submit(f)" >
+  <div class="form-group">
+    <label for="firstName">FirstName</label>
+    <input required
+     minlength="4"
+     pattern="admin"
+     ngModel
+     name="firstName"
+     id="firstName"
+     type="text"
+     #firstName="ngModel"
+     (change)="log(firstName)"
+     class="form-control" >
+
+   <div
+    class="alert alert-danger"
+    *ngIf="firstName.touched && firstName.invalid">
+    <div *ngIf="firstName.errors.required">
+      first name is required
+     </div>
+     <div *ngIf="firstName.errors.minlength">
+       <!--here we are showing min char dynamicaly in {{}}-->
+      first name should be mininmum
+      {{firstName.errors.minlength.requiredLength}} characters
+     </div>
+     <div *ngIf="firstName.errors.pattern">
+     name must be admin
+    </div>
+
+  </div>
+  </div>
+<!--CheckBox-->
+  <div class="form-group">
+    <label for="comment">Comment </label>
+    <textarea ngModel name="comment" id="comment" #comment="ngModel" cols="30" rows="10" class="form-control"></textarea>
+  </div>
+  <div class="checkbox">
+    <label >Checkbox</label>
+    <input type="checkbox" ngModel name="checkbox">
+    </div>
+<!--DRopdown List-->
+    <div class="form-group">
+      <label for="contactMethod"></label>
+      <select ngModel name="contactMethod" id="contactMethod" class="form-control">
+        <option value="">select your option</option>
+        <!--rendering value dynamically using object from component-->
+<!--if you want whole object u can use [ngValue]="method"-->
+        <option *ngFor="let method of contactMethods" [value]="method.id">{{method.name}}</option>
+      </select>
+      </div>
+
+      <!--Radio button-->
+      <div class="radio" *ngFor="let method of contactMethods">
+        <label for="contactradio">
+          <input ngModel type="radio" name="contactradio" [value]="method.id">
+          {{method.name}}
+        </label>
+      </div>
+    <p >
+      {{f.value|json}}
+       </p>
+  <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Submit</button>
+  </form>
+</div>
