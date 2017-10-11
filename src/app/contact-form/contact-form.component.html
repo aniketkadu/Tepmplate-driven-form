@@ -2,6 +2,9 @@
 <form #f="ngForm" (ngSubmit)="submit(f)" >
   <div class="form-group">
     <label for="firstName">FirstName</label>
+    <!--#firstname temp var created for performin operation on only this i/p field and log() also. just in=mplemented to show 
+operation on single element
+      -->
     <input required
      minlength="4"
      pattern="admin"
@@ -20,7 +23,7 @@
       first name is required
      </div>
      <div *ngIf="firstName.errors.minlength">
-       <!--here we are showing min char dynamicaly in {{}}-->
+       <!--here we are showing min char dynamically in {{}}-->
       first name should be mininmum
       {{firstName.errors.minlength.requiredLength}} characters
      </div>
@@ -30,11 +33,12 @@
 
   </div>
   </div>
-<!--CheckBox-->
+
   <div class="form-group">
     <label for="comment">Comment </label>
-    <textarea ngModel name="comment" id="comment" #comment="ngModel" cols="30" rows="10" class="form-control"></textarea>
+    <textarea ngModel name="comment" id="comment"  cols="30" rows="10" class="form-control"></textarea>
   </div>
+  <!--CheckBox-->
   <div class="checkbox">
     <label >Checkbox</label>
     <input type="checkbox" ngModel name="checkbox">
